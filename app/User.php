@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,4 +37,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    //Postに対するリレーション
+    public function posts()   
+    {
+        return $this->hasMany('App\Post');  
+    }
+    //Replyに対するリレーション
+    public function replies()   
+    {
+        return $this->hasMany('App\Reply');  
+    }
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }
